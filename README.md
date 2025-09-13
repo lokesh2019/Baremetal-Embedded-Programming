@@ -9,14 +9,7 @@ Following this book to learn bare-metal embedded programming in both C and Rust:
 Make sure all the tools other than VS Code are downloaded and extracted to PROJECT_ROOT/tools
 <li> IDE: VS Code (Irrelevant as building will happen on Linux cli)
 <li> Arm C compiler toolchain: https://developer.arm.com/downloads/-/gnu-rm
-<li> Download Rust offline installer: https://forge.rust-lang.org/infra/other-installation-methods.html
-<ul>
-<li> Install rust as a standalone compiler to make things easier. Docker file can just use it.
-
-```
-./install.sh --prefix=/work/Baremetal-Embedded-Programming/tools/rust-1.89.0
-```
-</ul>
+<li> Dockerfile installs rust toolchain using rustup.
 <li> Download OpenOCD to program the board: https://github.com/xpack-dev-tools/openocd-xpack/releases
 
 <h2> Reference Documents </h2>
