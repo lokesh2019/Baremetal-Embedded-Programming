@@ -17,3 +17,15 @@ Make sure all the tools other than VS Code are downloaded and extracted to PROJE
 <li> STM32F411 datasheet: https://www.st.com/resource/en/datasheet/stm32f411ce.pdf
 <li> STM32F411 reference manual: https://www.st.com/resource/en/reference_manual/rm0383-stm32f411xce-advanced-armbased-32bit-mcus-stmicroelectronics.pdf
 <li> Cortex-M4 generic user guide: https://developer.arm.com/documentation/dui0553/latest/
+
+
+<h2> Build instructions </h2>
+<h3> Build docker container if not built already </h3>
+<li> Build container (once only): `docker build -t baremetal-builder:latest .`
+<li> Run container: `docker run -it -v $(pwd):/work -w /work baremetal-builder:latest bash`
+<li> The commands to build hand rolled baremetal firmware while we sort out the Makefile:
+
+    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -std=gnu11 ch2_flip_led.c -o ch2_flip_led.o
+    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -std=gnu11 stm32f411_startup.c -o stm32f411_startup.o
+    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -nostdlib -T stm32_ls.ld *.o -o ch2_flip_led.elf
+<li>

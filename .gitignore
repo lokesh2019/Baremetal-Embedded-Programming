@@ -1,2 +1,5 @@
 tools/
 references/
+*.o
+*.elf
+.vscode
