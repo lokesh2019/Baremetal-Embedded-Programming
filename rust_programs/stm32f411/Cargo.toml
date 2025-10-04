@@ -1,0 +1,9 @@
+[package]
+name = "stm32f411_apps"
+version = "1.0.0"
+edition = "2025"
+
+[build]
+target="thumbv7em-none-eabihf" # Cortex-M4F
+
+[dependencies]
