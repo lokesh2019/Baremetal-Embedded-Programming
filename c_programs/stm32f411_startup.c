@@ -87,14 +87,14 @@ uint32_t vector_tbl[] __attribute__((section(".isr_vector_tbl")))={
 	(uint32_t)&HardFault_Handler,
 	(uint32_t)&MemManage_Handler,
 	(uint32_t)&BusFault_Handler,
-      (uint32_t)&UsageFault_Handler,
-      0,
-      0,
-      0,
-      0,
-      (uint32_t)&SVC_Handler,
-      (uint32_t)&DebugMon_Handler,
-      0,
+    (uint32_t)&UsageFault_Handler,
+    0,
+    0,
+    0,
+    0,
+    (uint32_t)&SVC_Handler,
+    (uint32_t)&DebugMon_Handler,
+    0,
     (uint32_t)&PendSV_Handler,
     (uint32_t)&SysTick_Handler,
     (uint32_t)&WWDG_IRQHandler,              			/* Window Watchdog interrupt                                          */
@@ -116,10 +116,10 @@ uint32_t vector_tbl[] __attribute__((section(".isr_vector_tbl")))={
     (uint32_t)&DMA1_Stream5_IRQHandler,      			/* DMA1 Stream5 global interrupt                                      */
     (uint32_t)&DMA1_Stream6_IRQHandler,      			/* DMA1 Stream6 global interrupt                                      */
     (uint32_t)&ADC_IRQHandler,               			/* ADC1 global interrupt                                              */
-      0,                            			/* Reserved                                                           */
-      0,                            			/* Reserved                                                           */
-      0,                            			/* Reserved                                                           */
-      0,                            			/* Reserved                                                           */
+    0,                            			/* Reserved                                                           */
+    0,                            			/* Reserved                                                           */
+    0,                            			/* Reserved                                                           */
+    0,                            			/* Reserved                                                           */
     (uint32_t)&EXTI9_5_IRQHandler,           			/* EXTI Line[9:5] interrupts                                          */
     (uint32_t)&TIM1_BRK_TIM9_IRQHandler,     			/* TIM1 Break interrupt and TIM9 global interrupt                     */
     (uint32_t)&TIM1_UP_TIM10_IRQHandler,     			/* TIM1 Update interrupt and TIM10 global interrupt                   */
@@ -205,7 +205,7 @@ void Reset_Handler(void){
         *p_dest_mem++ = *p_src_mem;
     }
 
-    /* Initialise teh .bss section to zero in SRAM */
+    /* Initialise the .bss section to zero in SRAM */
     p_dest_mem = (uint32_t *)&_sbss;
     for(uint32_t i=0; i<bss_mem_size; i++){
         *p_dest_mem++ = 0; /* Zeroise memory */

@@ -1,9 +1,12 @@
 [package]
 name = "stm32f411_apps"
 version = "1.0.0"
-edition = "2025"
+edition = "2024"
 
 [build]
 target="thumbv7em-none-eabihf" # Cortex-M4F
 
-[dependencies]
+[target.thumbv7em-none-eabihf]
+rustflags = [
+  "-C", "link-arg=-Tstm32_ls.ld"
+]

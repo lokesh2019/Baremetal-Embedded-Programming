@@ -3,3 +3,5 @@ references/
 *.o
 *.elf
 .vscode
+**/target
+**/*.lock
