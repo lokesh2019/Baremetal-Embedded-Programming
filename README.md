@@ -22,11 +22,9 @@ Make sure all the tools other than VS Code are downloaded and extracted to PROJE
 <li> Build container (once only): `docker build -t baremetal-builder:latest .`
 <li> Run container: `docker run -it --privileged -v $(pwd):/work -w /work baremetal-builder:latest bash` (The container is privileged to access host's devices. It can be restricted to specific devices but meh.)
 <li> To join the same container from another tab, `docker exec -it $COINTAINER_NAME bash` (This is required to connect to the local GDB server running inside the container)
-<li> The commands to build hand rolled baremetal firmware while we sort out the Makefile:
+<li> Make all binaries with one command:
 
-    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -std=gnu11 ch2_flip_led.c -o ch2_flip_led.o
-    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb -std=gnu11 stm32f411_startup.c -o stm32f411_startup.o
-    /work/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -nostdlib -T stm32_ls.ld *.o -o ch2_flip_led.elf
+    make all
 
 <h2> To load application on board</h2>
 <li> In the build container, start GDB server in the container (password:devel): 
@@ -38,6 +36,6 @@ Make sure all the tools other than VS Code are downloaded and extracted to PROJE
     gdb-multiarch
     target remote localhost:3333
     monitor reset init
-    monitor flash write_image erase $PATH_TO_ELF_FILE
+    monitor flash write_image erase $ABSOLUTE_PATH_TO_ELF_FILE
     monitor reset init
     monitor resume
