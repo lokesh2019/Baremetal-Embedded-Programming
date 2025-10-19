@@ -1,3 +1,5 @@
+#include<stdint.h>
+
 /* Peripherals Base Address */
 #define PERIPH_BASE (0x40000000UL)
 /* Offset for AHB1 peripheral bus */
@@ -30,3 +32,28 @@
 #define PIN5 (1U<<5)
 /* Alias for PIN5 representing LED pin */
 #define LED_PIN PIN5
+
+
+/* GPIO Bank Registers */
+typedef struct {
+    volatile uint32_t MODER;       /* offset: 0x00 */
+    volatile uint32_t OTYPER;      /* offset: 0x04 */
+    volatile uint32_t OSPEEDR;     /* offset: 0x08 */
+    volatile uint32_t PUPDR;       /* offset: 0x0C */
+    volatile uint32_t IDR;         /* offset: 0x10 */
+    volatile uint32_t ODR;         /* offset: 0x14 */
+    volatile uint32_t BSRR;        /* offset: 0x18 */
+    volatile uint32_t LCKR;        /* offset: 0x1C */
+    volatile uint32_t AFRL;        /* offset: 0x20 */
+    volatile uint32_t AFRH;        /* offset: 0x24 */
+} GPIO_TypeDef;
+
+/* RCC registers */
+typedef struct {
+    volatile uint32_t DUMMY[12];
+    volatile uint32_t AHB1ENR;     /* offset: 0x30 */
+} RCC_TypeDef;
+
+
+#define RCC ((RCC_TypeDef*) RCC_BASE)
+#define GPIOA ((GPIO_TypeDef*)GPIOA_BASE)

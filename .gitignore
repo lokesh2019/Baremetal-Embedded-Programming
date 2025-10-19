@@ -2,6 +2,7 @@ tools/
 references/
 *.o
 *.elf
+*.map
 .vscode
 **/target
 **/*.lock
