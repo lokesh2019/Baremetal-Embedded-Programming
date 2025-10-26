@@ -1,5 +1,5 @@
 <h1> Aide-mémoire </h1>
-General notes for future reference. Out board is NUCLEO-411RE
+General notes for future reference. Our board is NUCLEO-411RE
 <h2> Chapter 2 </h2>
 
 <h3> User LED pin connection </h3>
@@ -18,6 +18,7 @@ This is specific to the microprocessor itself, not the board. Look up microproce
 <h4> Find GPIO port for LED</h4>
 <li> APB = Advanced Peripheral Bus (for low bandwidth peripherals), AHB = Advanced High-performance Bus (for high bandwidth peripherals)
 <li> GPIOA (GPIO PORTA) registers are in range 0x4002_0000 - 0x4002_03FF
+<li> GPIOC (GPIO PORTC) registers are in range 0x4002_0800 - 0x4002_0BFF
 <h4> Find clock signal for GPIO port </h4>
 <li> To use the peripheral, clock signal has to be enabled first.
 <li> RCC peripheral on the same  bus is the clock peripheral, with range: 0x4002_3800 - 0x4002_3BFF
