@@ -23,5 +23,11 @@ ch7_led_sos.elf : ch7/ch7_led_SOS.o ch7/gpio.o stm32f411_startup.o
 ch7_button_led.elf : ch7/ch7_button_led.o ch7/gpio.o stm32f411_startup.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
+ch8_led_sos.elf : ch8/ch8_led_SOS.o ch8/gpio.o ch8/systick.o stm32f411_startup.o
+	$(CC) $(LDFLAGS) $^ -o $@
+
+ch9_led_blink.elf: ch9/ch9_led_blink.o ch9/gpio.o ch9/tim.o stm32f411_startup.o
+	$(CC) $(LDFLAGS) $^ -o $@
+
 clean:
 	rm -rf $(OBJ) *.elf *.map
