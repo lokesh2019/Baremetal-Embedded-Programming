@@ -37,3 +37,13 @@ This is specific to the microprocessor itself, not the board. Look up microproce
 Final step is to know which bit to flip to set/clear the GPIO pin.
 <li> The GPIO output port data register is located at offset 0x14 from the GPIO port base
 <li> i.e. 0x4002_0000 + 0x14 = 0x4002_0014
+
+<h3> UART setup </h3>
+<li> USART general information is in rm0383, section 19.6. This tells us which registers are used to configure UART
+<li> Some of the GPIO pins allow UART functions. There are 3 USARTs on the board. 
+<li> See STM32f411 datasheet, page 41, pin PA2 supports USART2_TX. ping PA3 supports USART2_RX.
+<li> Table 9 of the datasheet on page 48 shows alternate function mapping of PA pins confirmiong the same. Mapping PA2 and PA3 as AF07 (alternate function) does the job.
+<li> Table 9 also shows PA2 and PA3 are on GPIO port A. GPIO are managed by the AHB, and then the UART is managed by APB.
+<li> According to UM21724, pin D0 maps to PA2 (USART2_TX) and ping D0 maps to PA3 (USART2_RX).
+<li> According to RM0383, USART2 is in APB1.
+<li> This operation needs to enable clocks to both AHB1 and APB1.
