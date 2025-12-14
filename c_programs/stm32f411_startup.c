@@ -202,7 +202,7 @@ void Reset_Handler(void){
 
     /* Copy .data section from FLASH to SRAM */
     for(uint32_t i=0; i < data_mem_size; i++){
-        *p_dest_mem++ = *p_src_mem;
+        *p_dest_mem++ = *p_src_mem++;
     }
 
     /* Initialise the .bss section to zero in SRAM */

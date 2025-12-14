@@ -17,7 +17,7 @@ ch2_blink_led.elf : ch2/ch2_flip_led.o stm32f411_startup.o
 ch6_blink_led.elf : ch6/ch6_flip_led_CMSIS.o stm32f411_startup.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
-ch7_led_sos.elf : ch7/ch7_led_SOS.o ch7/gpio.o stm32f411_startup.o
+ch7_gpio_sos.elf : ch7/ch7_led_SOS.o ch7/gpio.o stm32f411_startup.o
 	$(CC) $(LDFLAGS) $^ -o $@
 
 ch7_button_led.elf : ch7/ch7_button_led.o ch7/gpio.o stm32f411_startup.o

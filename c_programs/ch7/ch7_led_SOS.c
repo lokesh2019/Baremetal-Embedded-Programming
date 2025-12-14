@@ -4,7 +4,7 @@
 
 int main(void){
     /* Initialise GPIO port A */
-    init_gpioA();
+    init_led();
     /* Flip LED every 10k iterations */
     while (1)
     {

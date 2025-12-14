@@ -11,16 +11,21 @@
 #define CR1_TE (1U<<3)
 #define CR1_UE (1U<<13)
 /* SR bit is from USART_SR register */
-#define SR_TXE (1U<<0)
+#define SR_TXE (1U<<7)
 
 static void uart_set_baudrate(uint32_t preiph_clk, uint32_t baudrate);
+static void uart_write(int ch);
 
-int __io_putchar(int ch){
-    uart_write(ch);
-    return ch;
+int printf_uart(char *ptr)
+{
+    int ctr = 0;
+    while (*ptr != 0){
+        uart_write(*ptr);
+        ptr++;
+        ctr++;
+    }
+    return ctr;
 }
-
-// void uart_write(int ch);
 
 void uart_init(void){
     /* Enable clock access to GPIOA */
@@ -44,11 +49,14 @@ void uart_init(void){
     /* Configure UART baudrate */
     uart_set_baudrate(APB1_CLK, DBG_UART_BAUDRATE);
 
+    /* Configure uart baudrate */
+    USART2->CR1 = CR1_TE;
+
     /* Enable UART Module */
     USART2->CR1 |= CR1_UE;
 }
 
-void uart_write(int ch){
+static void uart_write(int ch){
     /* Make sure transmit data register is empty */
     while(!(USART2->SR & SR_TXE)){}
 

@@ -35,9 +35,13 @@ SECTIONS {
         }>SRAM AT> FLASH /* > (vma) AT> (lma)*/
     .bss :
         {
+            __bss_start__ = .;
             _sbss = .;
             *(.bss)
             . = ALIGN (4);
             _ebss = .;
+            __bss_end__ = .;
         } > SRAM
+
+    end = .;
 }
