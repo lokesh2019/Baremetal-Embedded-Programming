@@ -3,7 +3,7 @@ INC = -I$(shell pwd) -I$(shell pwd)/chip_headers/CMSIS/Device/ST/STM32F4xx/Inclu
 CFLAGS = -c -mcpu=cortex-m4 -mthumb -std=gnu11
 LDFLAGS = -nostdlib -T stm32_ls.ld -Wl,-Map=ch2_flip_led.map
 
-all: ch2_blink_led.elf ch6_blink_led.elf ch7_gpio_sos.elf ch7_button_led.elf ch8_led_sos.elf ch9_led_blink.elf ch10_uart_hello.elf
+all: ch2_blink_led.elf ch6_blink_led.elf ch7_gpio_sos.elf ch7_button_led.elf ch8_led_sos.elf ch9_led_blink.elf ch10_uart_hello.elf ch11_voltmeter_adc.elf
 
 SRC = $(shell find . -name "*.c")
 OBJ = $(SRC:.c=.o)
@@ -30,6 +30,9 @@ ch9_led_blink.elf: ch9/ch9_led_blink.o ch9/gpio.o ch9/tim.o stm32f411_startup.o
 	$(CC) $(LDFLAGS) $^ -g -o $@
 
 ch10_uart_hello.elf: ch10/ch10_uart_hello.o ch10/uart.o stm32f411_startup.o
+	$(CC) $(LDFLAGS) $^ -g -o $@
+
+ch11_voltmeter_adc.elf: ch11/ch11_voltmeter_adc.o ch11/uart.o ch11/adc.o stm32f411_startup.o
 	$(CC) $(LDFLAGS) $^ -g -o $@
 
 clean:
