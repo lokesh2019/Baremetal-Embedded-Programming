@@ -31,11 +31,10 @@ Make sure all the tools other than VS Code are downloaded and extracted to PROJE
 
     sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
 <li> Open another terminal window and join the SAME container
-<li> Connect to the local GDB server
+<li> Connect to the local GDB server. This also helps debugging the code if neeeded. Press "Ctrl+X 2" to swich GDB views .
 
-    gdb-multiarch
+    gdb-multiarch -tui $ABSOLUTE_PATH_TO_ELF_FILE
     target remote localhost:3333
-    monitor reset init
-    monitor flash write_image erase $ABSOLUTE_PATH_TO_ELF_FILE
-    monitor reset init
-    monitor resume
+    monitor reset halt
+    load
+    continue
