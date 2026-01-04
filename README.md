@@ -4,6 +4,9 @@ Following this book to learn bare-metal embedded programming in both C and Rust:
 <h2> Hardware Required </h2>
 <li> NUCLEO-F411RE board
 <li> 10kΩ potentiometer
+<li> Breadboard
+<li> Connector wires
+<li> ADXL345 digital accelerometer
 
 <h2> Software setup </h2>
 Make sure all the tools other than VS Code are downloaded and extracted to PROJECT_ROOT/tools
