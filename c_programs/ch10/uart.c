@@ -64,6 +64,12 @@ static void uart_write(int ch){
     USART2->DR = (ch & 0xFF);
 }
 
+int __io_putchar(int ch)
+{
+    uart_write(ch);
+    return ch;
+}
+
 static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate){
     return ((periph_clk + (baudrate/2U))/baudrate);
 }
