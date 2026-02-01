@@ -30,13 +30,13 @@ ch8_led_sos.elf : ch8/ch8_led_SOS.o ch8/gpio.o ch8/systick.o stm32f411_startup.o
 ch9_led_blink.elf: ch9/ch9_led_blink.o ch9/gpio.o ch9/tim.o stm32f411_startup.o
 	$(CC) -nostdlib -T stm32_ls.ld -Wl,-Map=ch9_led_blink.map -mcpu=cortex-m4 -mthumb $^ -g -o $@
 
-ch10_uart_hello.elf: ch10/ch10_uart_hello.o ch10/uart.o stm32f411_startup.o syscalls.o
+ch10_uart_hello.elf: ch10/ch10_uart_hello.o ch10/uart.o stm32f411_startup.o syscalls.o sysmem.o
 	$(CC) -T stm32_ls.ld -Wl,-Map=ch10_uart_hello.map -mcpu=cortex-m4 -mthumb $^ -g -o $@
 
 ch11_voltmeter_adc.elf: ch11/ch11_voltmeter_adc.o ch11/uart.o ch11/adc.o stm32f411_startup.o
 	$(CC) -nostdlib -T stm32_ls.ld -Wl,-Map=ch11_voltmeter_adc.map $^ -g -o $@
 
-ch12_adx345_spi.elf: ch12/ch12_adxl345_spi.o ch12/uart.o ch12/adxl345.o ch12/spi.o stm32f411_startup.o syscalls.o
+ch12_adx345_spi.elf: ch12/ch12_adxl345_spi.o ch12/uart.o ch12/adxl345.o ch12/spi.o stm32f411_startup.o syscalls.o sysmem.o
 	$(CC) -T stm32_ls.ld -Wl,-Map=ch11_adx345_spi.map -mcpu=cortex-m4 -mthumb $^ -g -o $@
 
 clean:

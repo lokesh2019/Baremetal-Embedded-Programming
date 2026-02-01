@@ -41,3 +41,12 @@ Make sure all the tools other than VS Code are downloaded and extracted to PROJE
     monitor reset halt
     load
     continue
+
+<li> Or another way of loading firmware
+
+    gdb-multiarch
+    target remote localhost:3333
+    monitor reset init
+    monitor flash write_image erase $PATH_TO_ELF_FILE
+    monitor reset init
+    monitor resume
