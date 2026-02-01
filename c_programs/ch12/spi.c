@@ -14,7 +14,7 @@
 * (2) PA5 - SPI1_SCK
 * (3) PA6 - SPI1_MISO
 * (4) PA7 - SPI1_MOSI
-* The code below actually use PA9 as the output pin to act as chip select.
+* The code below actually uses PA9 as the output pin to act as chip select.
 * These are all on Port-A. GPIOA is on AHB1 bus. UM1724, Table 16 has all the pin name mappings.
 
 * According to the Reference Manual RM0383, the SPI1 registers are on APB2 Bus.

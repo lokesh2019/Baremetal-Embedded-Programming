@@ -41,9 +41,16 @@ Final step is to know which bit to flip to set/clear the GPIO pin.
 <h3> UART setup </h3>
 <li> USART general information is in rm0383, section 19.6. This tells us which registers are used to configure UART
 <li> Some of the GPIO pins allow UART functions. There are 3 USARTs on the board. 
-<li> See STM32f411 datasheet, page 41, pin PA2 supports USART2_TX. ping PA3 supports USART2_RX.
+<li> See STM32f411 datasheet, page 41, pin PA2 supports USART2_TX. pin PA3 supports USART2_RX.
 <li> Table 9 of the datasheet on page 48 shows alternate function mapping of PA pins confirmiong the same. Mapping PA2 and PA3 as AF07 (alternate function) does the job.
 <li> Table 9 also shows PA2 and PA3 are on GPIO port A. GPIO are managed by the AHB, and then the UART is managed by APB.
 <li> According to UM21724, pin D0 maps to PA2 (USART2_TX) and ping D0 maps to PA3 (USART2_RX).
 <li> According to RM0383, USART2 is in APB1.
 <li> This operation needs to enable clocks to both AHB1 and APB1.
+
+<h3> SPI setup </h3>
+<li> From the UM21724, these are the pins on the board:
+<li> PA9 = ChipSelect = D8 on board
+<li> PA5 = Clock = D13 on board
+<li> PA6 = MISO = D12 on board
+<li> PA7 = MOSI = D11 on board
