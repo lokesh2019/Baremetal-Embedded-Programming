@@ -3,7 +3,7 @@ INC = -I$(shell pwd) -I$(shell pwd)/chip_headers/CMSIS/Device/ST/STM32F4xx/Inclu
 CFLAGS = -c -mcpu=cortex-m4 -mthumb -std=gnu11 -ffreestanding -fno-builtin
 LDFLAGS = -T stm32_ls.ld -mcpu=cortex-m4 -mthumb
 
-all: ch2_blink_led.elf ch6_blink_led.elf ch7_gpio_sos.elf ch7_button_led.elf ch8_led_sos.elf ch9_led_blink.elf ch10_uart_hello.elf ch11_voltmeter_adc.elf ch12_adx345_spi.elf
+all: ch2_blink_led.elf ch6_blink_led.elf ch7_gpio_sos.elf ch7_button_led.elf ch8_led_sos.elf ch9_led_blink.elf ch10_uart_hello.elf ch11_voltmeter_adc.elf ch12_adx345_spi.elf ch13_adxl345_i2c.elf
 
 SRC = $(shell find . -name "*.c")
 OBJ = $(SRC:.c=.o)
@@ -39,7 +39,10 @@ ch11_voltmeter_adc.elf: ch11/ch11_voltmeter_adc.o ch11/uart.o ch11/adc.o stm32f4
 	$(CC) $(LDFLAGS) -Wl,-Map=ch11_voltmeter_adc.map $^ -g -o $@
 
 ch12_adx345_spi.elf: ch12/ch12_adxl345_spi.o ch12/uart.o ch12/adxl345.o ch12/spi.o stm32f411_assembly_startup.o syscalls.o sysmem.o
-	$(CC) $(LDFLAGS) -Wl,-Map=ch11_adx345_spi.map $^ -g -o $@
+	$(CC) $(LDFLAGS) -Wl,-Map=ch12_adx345_spi.map $^ -g -o $@
+
+ch13_adxl345_i2c.elf:  ch13/ch13_adxl345_i2c.o ch13/uart.o ch13/adxl345.o ch13/i2c.o stm32f411_assembly_startup.o syscalls.o sysmem.o
+	$(CC) $(LDFLAGS) -Wl,-Map=ch13_adxl345_i2c.map $^ -g -o $@
 
 clean:
-	rm -rf $(OBJ) *.elf *.map
+	rm -rf $(OBJ) *.elf *.map stm32f411_assembly_startup.o
