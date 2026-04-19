@@ -17,7 +17,9 @@ all: ch2_blink_led.elf \
 	 ch15_rtc.elf \
 	 ch16_iwdg.elf \
 	 ch17_adc_dma.elf \
-	 ch17_uart_dma.elf
+	 ch17_uart_dma.elf \
+	 ch17_mem_dma.elf \
+	 ch18_standby.elf
 
 SRC = $(shell find . -name "*.c")
 OBJ = $(SRC:.c=.o)
@@ -72,6 +74,12 @@ ch17_adc_dma.elf: ch17_adc_dma/ch17_adc_dma.o ch17_adc_dma/adc_dma.o ch17_adc_dm
 
 ch17_uart_dma.elf: ch17_uart_dma/ch17_uart_dma.o ch17_uart_dma/uart_dma.o stm32f411_assembly_startup.o syscalls.o sysmem.o
 	$(CC) $(LDFLAGS) -Wl,-Map=ch17_uart_dma.map $^ -g -o $@
+
+ch17_mem_dma.elf: ch17_mem_dma/ch17_mem_dma.o ch17_mem_dma/uart.o ch17_mem_dma/dma.o stm32f411_assembly_startup.o syscalls.o sysmem.o
+	$(CC) $(LDFLAGS) -Wl,-Map=ch17_mem_dma.map $^ -g -o $@
+
+ch18_standby.elf: ch18/ch18_standby.o ch18/standby_mode.o ch18/uart.o ch18/gpio_exti.o stm32f411_assembly_startup.o syscalls.o sysmem.o
+	$(CC) $(LDFLAGS) -Wl,-Map=ch18_standby.map $^ -g -o $@
 
 clean:
 	rm -rf $(OBJ) *.elf *.map stm32f411_assembly_startup.o
